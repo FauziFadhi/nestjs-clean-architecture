@@ -1,73 +1,127 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+## OS Plugin
+- [Node Version Manager](https://github.com/nvm-sh/nvm) this plugin used for managing your need in your OS.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Editor Plugin (Please install these plugin)
+- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Editor Config](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Dependencies Documentation (Please read these dependencies docs)
+- NodeJs >= 16 LTS 
+- [Typescript 4.7](https://www.typescriptlang.org/docs/)
+- NestJs [V9](https://nestjs.com/)
+- ORM [Sequelize-Typescript v2.1.3](https://www.npmjs.com/package/sequelize-typescript)
+- Base ORM [Sequelize v6](https://sequelize.org/master/)
+- Database Migration [Umzug](https://github.com/sequelize/umzug)
+- Validator [Class Validator](https://github.com/typestack/class-validator)
+- Date Time Manipulation [Luxon](https://moment.github.io/luxon/#/?id=luxon)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+# Basic Command
+basic command for run this project
+## Migration
+``` 
+npm run migrate <migration runner file> -- <umzug command> 
 ```
 
-## Running the app
+example create migration file: `npm run migrate core -- create --name=<filename>`
 
-```bash
-# development
-$ npm run start
+`core` from this command is the runner file at root folder. the command after double dash `--` is pure command from umzug documentation. you can find others from documentation link above.
 
-# watch mode
-$ npm run start:dev
+---
+# How To Install
 
-# production mode
-$ npm run start:prod
+
+- Open your project folder
+- run ``` npm i -g ts-node ```
+- open base-code repo with your browser
+- and copy repository git url
+- and replace `<this_git_url>` with copied url to get all file from base-code repo with the following command
+- run the command from your project root directory
+## Command
+```
+git pull <this_git_url> master --allow-unrelated-histories
+```
+## Example
+this is example of command if i copy url from base-code repository
+```
+git pull https://fauzifadh@bitbucket.org/rollingglory/node-basecode.git master --allow-unrelated-histories
+```
+- run `npm install`
+- create public and secret key for example authentication and paste it inside `./src/modules/_common/auth/secret/` directory
+- make your .env based on .env.example and fill the minimum required environment property
+- run `npm run migration --db=migrate -- up` or `ts-node migrate up` to run example database migration from migrate.ts file
+
+- `npm run start:dev` to run your project with hot Reload
+
+### Example Implementation
+- you can see example of implementation at `src/apps/example` folder
+
+----
+<br/>
+<br/>
+<br/>
+
+# Http Request
+if your project need to request to 3rd Party API please install `@nestjs/axios` [Nestjs Axios](https://www.npmjs.com/package/@nestjs/axios)
+from that library because the return type is `Observable` and from `rxjs` `.toPromise()` is deprecated.
+please use `LastValueFrom` or `firstValueFrom`.
+## Example
+please use
+```
+const resp = await lastValueFrom(this.httpService.post())
+```
+instead of
+```
+const resp = await this.httpService.post().toPromise()
+
 ```
 
-## Test
+## Http Request with Circuit Breaker
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+Or you can use HttpRequest with circuit Breaker if you install this package [Circuit Breaker](https://github.com/FauziFadhi/rgb-safe-request). this package can handle http request with axios inside it and handling circuit breaker for case give `target` to recover first.
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Support
+<br/>
+<br/>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Custom Cache
+if you want to use custom cache with custom key, you can follow this [instruction](https://docs.nestjs.com/techniques/caching#interacting-with-the-cache-store)
 
-## Stay in touch
+----
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<br/>
 
-## License
+# Swagger
+- Install the dependencies `npm install --save @nestjs/swagger@5.x.x swagger-ui-express`
+- use file with these suffix [.viewmodel.ts, .transfomer.ts, .request.ts] the swagger will automatically tell the docs from those type file.
+- you can use `?` to make the attribute become optional, example `age?: number`. swagger will translate the `age` to its documentation become optional
+- you can see the setup config at `main.ts` file
+- you can open the docs at `localhost:3000/api/docs`, if the example value not appear, `you can delete the node_modules` -> `npm i` -> `npm run buid` -> `try to re run`
+<br/>
 
-Nest is [MIT licensed](LICENSE).
+# Folder Structure
+
+ ```Incoming```
+
+ - src
+ - - modules
+ - - - _common // `business logic function that can be used at 'apps' and 'cms' module`
+ - - - apps
+ - - - cms
+ - - - middleware // `base logic to intgerate with 3rd Party`
+ - - config // `place your 3rd party config, app config here`
+ - - migration // `place for migration file`
+ - - models // `place for model`
+ - - - core // `place for model if you has 2 or more database, and place your core data to this folder`
+ - - - log // `place to this folder all model for log if you has seperate database for logging`
+ - - utils
+ - - - constant `create new file of constant into this folder based on context of your constant`
+ - - - - index `export all constant file that your created here`
+ - - - - auth `place all constant that has content for authentication here`
+ - - - enum `create new file of enum here`
+ - - - - file
+ - - - ErrorCode `place your error code file here`
+ - - - - payment `place your error code for payment context here`
+ - - - all-exception-filter.ts `all of your error going to this file before returned to frontend`

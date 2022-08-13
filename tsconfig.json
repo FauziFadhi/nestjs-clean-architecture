@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "require": ["tsconfig-paths/register"],
+  },
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
@@ -6,21 +9,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2020",
+    "target": "es2021",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./src",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@models/*": ["./models/*"],
-      "@utils/*": ["./common/utils/*"],
-      "@common/*": ["./common/*"]
+      "@infra/*":["./infrastructure/*"],
+      "@utils/*": ["./utils/*"],
     }
   }
 }
