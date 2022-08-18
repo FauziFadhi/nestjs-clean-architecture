@@ -6,7 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AllExceptionsFilter } from '@utils/all-exception-filter';
 import { ValidationPipe } from '@utils/pipe/ValidationPipe';
 import { install } from 'source-map-support';
-import { DashboardModule } from 'ui/dashboard/dashbord.module';
+import { DashboardModule } from 'adapter/rest/dashboard/dashbord.module';
 
 import { AppModule } from './app.module';
 

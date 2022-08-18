@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { BaseResource } from '@utils/base-class/base.resource';
 import config from './config';
 import schema from './schema';
 
@@ -13,12 +12,7 @@ import schema from './schema';
       validationSchema: schema,
     }),
   ],
-  providers: [BaseResource],
+  providers: [],
 })
 export class AppConfigModule {
-  static BaseResouce: BaseResource;
-
-  constructor(readonly baseResource: BaseResource) {
-    AppConfigModule.BaseResouce = baseResource;
-  }
 }

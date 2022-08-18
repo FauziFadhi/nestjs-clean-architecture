@@ -1,3 +1,3 @@
-import { migrator } from './src/config/database/migration.provider';
+import { migrator } from './src/infrastructure/config/sequelize/migration.provider';
 
 migrator.runAsCLI();

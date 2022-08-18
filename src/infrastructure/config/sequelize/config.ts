@@ -35,6 +35,6 @@ export default {
     timezone: '+07:00',
   },
   timezone: '+07:00',
-  models: [path.join(__dirname, '../../models/core')],
+  models: [path.join(__dirname, '../../database/sequelize/models')],
   synchronize: false,
 };

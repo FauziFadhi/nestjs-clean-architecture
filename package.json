@@ -42,6 +42,7 @@
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
     "joi": "^17.6.0",
+    "json-api-serializer": "^2.6.6",
     "luxon": "^3.0.1",
     "opossum": "^6.4.0",
     "passport": "^0.6.0",
